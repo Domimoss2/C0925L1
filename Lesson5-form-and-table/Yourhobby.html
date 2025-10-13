@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>SỞ THÍCH CỦA BẠN</title>
+    <style>
+        /* Reset nhẹ */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: #dfffff; /* nền xanh nhạt như ảnh */
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+            padding: 30px 0;
+        }
+
+        /* Thùng chính */
+        .card {
+            width: 760px;               /* chỉnh giống ảnh to rộng */
+            margin: 10px auto;
+            background: #fff;
+            border: 1px solid #e6e6e6;
+            box-shadow: 0 0 4px rgba(0,0,0,0.12);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        /* Header cam */
+        .card .header {
+            background: #ff6200;
+            color: #fff;
+            text-align: center;
+            padding: 14px 16px;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 22px 28px 30px 28px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td.label {
+            width: 26%;
+            vertical-align: top;
+            padding: 8px 12px;
+        }
+
+        td.input {
+            width: 74%;
+            padding: 8px 12px;
+        }
+
+        /* label màu xanh đậm */
+        .field-label {
+            color: #0a4aa0;
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+
+        /* input style */
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px 10px;
+            border: 2px solid #cfcfcf;
+            border-radius: 2px;
+            outline: none;
+            font-size: 15px;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            border-color: #9ec9ff;
+            box-shadow: 0 0 4px rgba(30,130,255,0.12);
+        }
+
+        /* danh sách checkbox - chữ cam */
+        .hobby {
+            color: #ff7f2a;
+            font-size: 16px;
+            line-height: 28px;
+        }
+        .hobby .item {
+            display: inline-block;
+            min-width: 170px; /* chia thành 3 cột tương tự hình */
+            vertical-align: top;
+        }
+        .hobby input[type="checkbox"] {
+            transform: scale(1.1);
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+
+        /* nút kiểu 3D giống ảnh */
+        .buttons {
+            text-align: center;
+            padding-top: 14px;
+        }
+        .btn {
+            display: inline-block;
+            margin: 6px;
+            padding: 8px 18px;
+            background: linear-gradient(#efefef, #cfcfcf);
+            border: 1px solid #555;
+            box-shadow: 0 3px 0 #777 inset, 0 3px 0 rgba(0,0,0,0.15);
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .btn:hover { filter: brightness(0.97); }
+
+        /* responsive nhỏ màn hình */
+        @media (max-width: 780px) {
+            .card { width: 95%; }
+            .hobby .item { min-width: 45%; }
+            td.label { display: block; width: 100%; padding-bottom: 6px; }
+            td.input { display: block; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<form class="card" action="#" method="post">
+    <div class="header">SỞ THÍCH CỦA BẠN</div>
+
+    <div class="content">
+        <table>
+            <tr>
+                <td class="label"><label class="field-label" for="yourname">Họ và tên</label></td>
+                <td class="input"><input type="text" id="yourname" name="yourname" placeholder=""></td>
+            </tr>
+
+            <tr>
+                <td class="label"><label class="field-label" for="email">Email</label></td>
+                <td class="input"><input type="email" id="email" name="email" placeholder=""></td>
+            </tr>
+
+            <tr>
+                <td class="label"><span class="field-label">Sở thích</span></td>
+                <td class="input">
+                    <div class="hobby">
+                        <div class="item"><input type="checkbox" id="h1" name="hobby" value="thethao"><label for="h1"> Thể thao</label></div>
+                        <div class="item"><input type="checkbox" id="h2" name="hobby" value="amnhac"><label for="h2"> Âm nhạc</label></div>
+                        <div class="item"><input type="checkbox" id="h3" name="hobby" value="docsach"><label for="h3"> Đọc sách</label></div>
+
+                        <div class="item"><input type="checkbox" id="h4" name="hobby" value="luotweb"><label for="h4"> Lướt web</label></div>
+                        <div class="item"><input type="checkbox" id="h5" name="hobby" value="choigame"><label for="h5"> Chơi game</label></div>
+                        <div class="item"><input type="checkbox" id="h6" name="hobby" value="dienanh"><label for="h6"> Điện ảnh</label></div>
+
+                        <div class="item"><input type="checkbox" id="h7" name="hobby" value="dulich"><label for="h7"> Du lịch</label></div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="padding-top:18px">
+                    <div class="buttons">
+                        <button type="submit" class="btn">Gửi thông tin</button>
+                        <button type="reset" class="btn">Nhập lại</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+</body>
+</html>
