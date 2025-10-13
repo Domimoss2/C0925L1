@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký học viên</title>
+    <style>
+        body {
+            background-color: #ffffcc; /* nền vàng nhạt */
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            background-color: #ccffcc; /* nền xanh nhạt */
+            color: blue; /* chữ xanh dương */
+            padding: 10px;
+            margin: 0;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        form {
+            background-color: #ffffcc;
+            width: 600px;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            padding: 8px;
+            vertical-align: top;
+        }
+
+        label {
+            color: blue;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 95%;
+            padding: 5px;
+            border: 1px solid #999;
+            border-radius: 3px;
+        }
+
+        textarea {
+            height: 60px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            padding: 6px 15px;
+            margin: 5px;
+            border: 1px solid #333;
+            background-color: #eee;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+<h2>ĐĂNG KÝ HỌC VIÊN</h2>
+
+<form>
+    <table>
+        <tr>
+            <td><label for="yourname">Họ và tên</label></td>
+            <td><input type="text" id="yourname" name="yourname"></td>
+        </tr>
+
+        <tr>
+            <td><label for="birthday">Ngày sinh</label></td>
+            <td><input type="date" id="birthday" name="birthday"></td>
+        </tr>
+
+        <tr>
+            <td><label>Giới tính</label></td>
+            <td>
+                <input type="radio" name="gender" value="Nam">Nam
+                <input type="radio" name="gender" value="Nữ">Nữ
+            </td>
+        </tr>
+
+        <tr>
+            <td><label for="address">Địa chỉ</label></td>
+            <td><textarea id="address" name="address"></textarea></td>
+        </tr>
+
+        <tr>
+            <td><label for="class">Lớp</label></td>
+            <td>
+                <select id="class" name="class">
+                    <option>-- Chọn lớp --</option>
+                    <option value="Lập trình Web">Lập trình Web</option>
+                    <option value="Thiết kế đồ họa">Thiết kế đồ họa</option>
+                    <option value="Tin học văn phòng">Tin học văn phòng</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td><label for="email">Email</label></td>
+            <td><input type="email" id="email" name="email"></td>
+        </tr>
+
+        <tr>
+            <td><label for="phone">Điện thoại</label></td>
+            <td><input type="text" id="phone" name="phone"></td>
+        </tr>
+    </table>
+
+    <div class="buttons">
+        <input type="submit" value="Đăng ký">
+        <input type="reset" value="Nhập lại">
+    </div>
+</form>
+</body>
+</html>
