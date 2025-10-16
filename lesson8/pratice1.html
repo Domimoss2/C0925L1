@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Pratice 1 </title>
+    <style>
+        h1{
+            font-family: Arial, sans-serif;
+            text-align: center;
+            font-size: 50px;
+            font-weight: 300;
+        }
+        label{
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            box-shadow: #555555 1px 2px 2px;
+        }
+    </style>
+</head>
+<body>
+    <h1> Bạn muốn tính năm nhuận?  </h1>
+    <label><p> Nhập năm bạn muốn kiểm tra :</p> </label>
+
+    <div>
+        <input type="number" id="input" placeholder="Nhap nam..">
+        <input type="button" value="check" onclick="cherk()">
+    </div>
+    <script>
+        let result = parseInt(document.getElementById('input').value);
+        function cherk(){
+            if((result % 4 === 0) && result % 100 !== 0 || result % 400 === 0){
+                document.getElementById('year').innerHTML = 'Đây là năm nhuận.';
+            }else {
+                document.getElementById('year').innerHTML = 'Đây không phải là năm nhuận.';
+            }
+        }
+    </script>
+    <p id="year"></p>
+</body>
+</html>
