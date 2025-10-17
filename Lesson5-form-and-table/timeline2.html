@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thời khoá biểu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            text-align: center;
+            color: blue;
+        }
+        .info {
+            margin-left: 200px;
+            font-size: 16px;
+            line-height: 1.8;
+            color: blue;
+        }
+        .info-right {
+            position: absolute;
+            right: 200px;
+            top: 50px;
+            font-size: 16px;
+            line-height: 1.8;
+            color: blue;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+            width: 80%;
+            border: 2px solid #000;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: orange;
+            color: #000;
+        }
+        tr:nth-child(odd) td {
+            background-color: #fff;
+        }
+        tr:nth-child(even) td {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h2>THỜI KHÓA BIỂU</h2>
+
+<div class="info">
+    <p>Lớp: <b>T0908I</b></p>
+    <p>Giáo viên: <b>KhoaNV</b></p>
+    <p>Phòng học: <b>Class3/Lab3</b></p>
+</div>
+
+<div class="info-right">
+    <p>Thời gian học: <b>13h30 - 17h30</b></p>
+    <p>Ngày học: <b>Thứ 3, 5, 7</b></p>
+</div>
+
+<table id="tkb">
+    <thead>
+    <tr>
+        <Th colspan="3"></Th>
+        <Th> Thứ 3</Th>
+        <Th> Thứ 5</Th>
+        <Th> Thứ 7</Th>
+    </tr>
+    <tr>
+        <th>Tuần</th>
+        <th>Ngày bắt đầu</th>
+        <th>Ngày kết thúc</th>
+        <th colspan="3"> Môn Học</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>01/09/2009</td>
+        <td>05/09/2009</td>
+        <td>CF - TL,L1</td>
+        <td>CF - T2,L2</td>
+        <td>CF - T3,L3</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>08/09/2009</td>
+        <td>12/09/2009</td>
+        <td>CF - T4,L4</td>
+        <td>CF - Written Test</td>
+        <td>C - T1,L1</td>
+    </tr>
+    <tr>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+</body>
+</html>

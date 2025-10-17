@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Pratice 3</title>
+</head>
+<body>
+    <script>
+        let question = prompt("Nhập User người dùng: ");
+        if (question === "admin") {
+            let pas = prompt('Nhập Password: ');
+            if (pas === "TheMaster") {
+                alert('Welcome Master!');
+            }else if (pas == null) {
+                alert("Canceled");
+            }else  {
+                alert("Wrong Password");
+            }
+        }else if(question == null) {
+            alert("Canceled");
+        }else {
+            alert("I dont know.");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Converter</title>
+    <style>
+        h1{
+            color: blue;
+            font-weight: 300;
+            font-size: 150px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        label {
+            font-weight: bold;
+            margin: 0 10px;
+        }
+        select, input {
+            padding: 5px;
+            margin: 5px;
+        }
+        button {
+            background-color: #928fff;
+            color: white;
+            border: none;
+            padding: 7px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 30px;
+        }
+        button:hover {
+            background-color: #7c76ff;
+        }
+        #result {
+            margin-top: 20px;
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Currency Converter</h1>
+    <label>Amount</label>
+    <input type="number" id="amount" placeholder="Enter amount" value="1">
+
+    <label>From Currency</label>
+    <select id="from">
+        <option value="VND">VietNam</option>
+        <option value="USD">USD</option>
+    </select>
+
+    <label>To Currency</label>
+    <select id="to">
+        <option value="USD">USD</option>
+        <option value="VND">VietNam</option>
+    </select>
+
+    <button onclick="convert()">Convert</button>
+
+    <div id="result"></div>
+
+<script>
+    const rate = {
+            'USD' : 1,
+            'VND' : 0.0000383,
+    };
+    function convert() {
+        let amount = parseFloat(document.getElementById("amount").value);
+        let can = document.getElementById("from").value;
+        let to = document.getElementById("to").value;
+        let change = amount * rate[can];
+        let result  = change / rate[to];
+        document.getElementById("result").innerHTML = 'Result : ' + result;
+    }
+</script>
+</body>
+</html>

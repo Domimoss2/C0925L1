@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Cacculator </title>
+    <style>
+        h1{
+            font-family: Arial, sans-serif;
+            font-size: 100px;
+            text-align: center;
+            color: black;
+            font-weight: 300;
+        }
+        .caculator{
+            font-family: Arial, sans-serif;
+            margin: 30px auto;
+            width: 700px;
+        }
+        body{
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .display{
+            font-size: 50px;
+            border: 1px solid black;
+            border-radius: 10px;
+            text-align: right;
+        }
+        button{
+            display: flex;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 999px;
+            cursor: pointer;
+            margin: 5px;
+            transition: 0.5s;
+            font-size: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        button:hover{
+            color: lightgray;
+        }
+        .box{
+            display: grid;
+            grid-template-columns: repeat(7 , 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Caculator</h1>
+    <div class="caculator">
+        <div class="display" id="display">0</div>
+        <div class="box">
+            <button onclick="press('Rad')">Rad</button>
+            <button onclick="press('Deg')">Deg</button>
+            <button onclick="press('!')">x!</button>
+            <button onclick="press('(')">(</button>
+            <button onclick="press(')')">)</button>
+            <button onclick="phantram()">%</button>
+            <button onclick="cleardisplay()">AC</button>
+            <button onclick="press('Inv')">inv</button>
+            <button onclick="press('sin')">sin</button>
+            <button onclick="press('In')">In</button>
+            <button onclick="press('7')">7</button>
+            <button onclick="press('8')">8</button>
+            <button onclick="press('9')">9</button>
+            <button onclick="press('/')">&divide;</button>
+            <button onclick="press(math.PI)">&pi;</button>
+            <button onclick="press('cos')">cos</button>
+            <button onclick="press('log')">Log</button>
+            <button onclick="press('4')">4</button>
+            <button onclick="press('5')">5</button>
+            <button onclick="press('6')">6</button>
+            <button onclick="press('*')">&times;</button>
+            <button onclick="press('e')">e</button>
+            <button onclick="press(tan)">tan</button>
+            <button onclick="press(math.sqrt(x))">&radic;</button>
+            <button onclick="press('3')">3</button>
+            <button onclick="press('2')">2</button>
+            <button onclick="press('1')">1</button>
+            <button onclick="press('-')">-</button>
+            <button onclick="press(Ans)">Ans</button>
+            <button onclick="press(Exp)">Exp</button>
+            <button onclick="press(math.pow(x,y))">x<sup>y</sup></button>
+            <button onclick="press('0')">0</button>
+            <button onclick="press('.')">.</button>
+            <button style="background: #0a4aa0" onclick="calculate()" id="result">=</button>
+            <button onclick="press('+')">+</button>
+        </div>
+    </div>
+    <script>
+        const display = document.getElementById("display");
+        function press(num){
+            if(display.textContent === "0"){
+                display.textContent = num;
+            }else{
+                display.textContent += num;
+            }
+        }
+        function cleardisplay(){
+            document.getElementById("display").textContent = "0";
+        }
+        function calculate(){
+            display.textContent = eval(display.textContent);
+        }
+        function phantram(){
+            display.textContent = display.textContent / 100;
+        }
+    </script>
+
+
+</body>
+</html>

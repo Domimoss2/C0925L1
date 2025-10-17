@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Play Bounce </title>
+</head>
+<body>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Football_%28soccer_ball%29.svg" alt="Footbal" id="Bounce" style="width : 30%"/>
+    <p> Bấm nút bên dưới để di chuyển quả bóng</p>
+    <input type="button" id="Click" onClick="Play()" value="PlayMe"/>
+    <script >
+        let P = document.getElementById('Bounce');
+        function add(){
+            P = document.getElementById('Bounce');
+            P.style.position = 'relative';
+            P.style.left = '0px'
+        }
+        function Play() {
+            P.style.left = parseInt(P.style.left) + 20 +'px';
+        }
+        add();
+    </script>
+</body>
+</html>
