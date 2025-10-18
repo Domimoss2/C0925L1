@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        #a {
+            text-decoration: none;
+            color: black;
+            background-color: wheat;
+            padding: 4px;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1> Date Calculator </h1>
+<form>
+    <label id="P" for="date"> Enter Date </label>
+    <input type="number" id="date" name="date">
+    <input id="a" type="button" value="calculate" onclick="calculate()">
+    <p id="result"></p>
+</form>
+<script>
+
+    function calculate() {
+        let A = document.getElementById("date").value;
+        switch (A) {
+            case "4":
+            case "9":
+            case "6":
+            case "11":
+                document.getElementById("result").innerHTML = "Thang " + A + ' co 30 ngay';
+                break;
+            case "3":
+            case "1":
+            case "5":
+            case "7":
+            case "8":
+            case "10":
+            case "12":
+                document.getElementById("result").innerHTML = "Thang " + A + ' co 31 ngay';
+                break;
+            case "2":   document.getElementById("result").innerHTML = "Thang " + A + ' co 28 hoac 29 ngay';
+            break;
+            default: document.getElementById("result").innerHTML = 'Khong co thang ' + A;
+        }
+    }
+
+</script>
+</body>
+</html>
