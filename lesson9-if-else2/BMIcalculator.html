@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> BMI Calculator </title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            font-size: 50px;
+            font-weight: bold;
+        }
+        #N{
+            padding: 5px;
+            cursor: pointer;
+            background: #555555;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="BMI"> BMI Calculator </h1>
+    <form>
+        <label id = "weight" for="w"> Weight </label>
+        <input id="w" type="number" name="weight" placeholder="Enter weight here">
+        <label id = "height" for="h"> Height </label>
+        <input id="h" type="number" name="height" placeholder="Enter height here">
+        <input id="N" type="button" value="Calculate" onclick="calculate()"/>
+        <p id="result"></p>
+    </form>
+    <script>
+        let A = document.getElementById("w").value;
+        let B = document.getElementById("h").value;
+        function calculate() {
+            let BMI = A / (B ** 2);
+            //let C = parseFloat(BMI)
+            if(BMI < 18.5){
+                document.getElementById('result').innerHTML = ' your body : Underweight'
+            }else if( BMI <= 25 && BMI <= 18.5){
+                document.getElementById('result').innerHTML = ' your body : Nomal'
+            }else if( BMI <= 30 && BMI <= 25){
+                document.getElementById('result').innerHTML = 'your body : Overweight'
+            }else if( BMI >= 30){
+                document.getElementById('result').innerHTML = 'your body : Obese'
+            }else{
+                document.getElementById('result').innerHTML = 'Wrong body'
+            }
+        }
+    </script>
+</body>
+</html>
