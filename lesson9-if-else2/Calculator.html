@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Calculator </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        form{
+            background-color: white;
+            margin: 30px auto;
+            width: 300px;
+            border: 1px solid black;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        #Show{
+            font-size: 28px;
+            background-color: wheat;
+            border: 1px solid black;
+            text-align: right;
+            font-family: arial, helvetica, sans-serif;
+        }
+        #B{
+            background-color: white;
+            color: black;
+            grid-template-columns: repeat(4 ,1fr);
+            grid-template-rows: repeat(4 ,1fr);
+            display: grid;
+            margin: 20px;
+        }
+        button{
+            border: 1px solid black;
+            border-radius: 999px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            padding: 5px;
+            margin: 5px;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <h1>FX570</h1>
+        <div id="Show">0</div>
+        <div id="B">
+            <button type="button" id="1" name="1" onclick="press(1)">1</button>
+            <button type="button" id="2" name="2" onclick="press(2)">2</button>
+            <button type="button" id="3" name="3" onclick="press(3)">3</button>
+            <button type="button" id="A" name="sum" onclick="press('+')">+</button>
+            <button type="button" id="4" name="4" onclick="press(4)">4</button>
+            <button type="button" id="5" name="5" onclick="press(5)">5</button>
+            <button type="button" id="6" name="6" onclick="press(6)">6</button>
+            <button type="button" id="K" name="K" onclick="press('-')">-</button>
+            <button type="button" id="7" name="7" onclick="press(7)">7</button>
+            <button type="button" id="8" name="8" onclick="press(8)">8</button>
+            <button type="button" id="9" name="9" onclick="press(9)">9</button>
+            <button type="button" id="nhan" name="nhan" onclick="press('*')">&times;</button>
+            <button type="button" id="c" name="c" onclick="cleardisplay()">AC</button>
+            <button type="button" id="0" name="0" onclick="press(0)">0</button>
+            <button type="button" id="=" name="=" onclick="Calculator()">=</button>
+            <button type="button" id="divide" name="divide" onclick="press('/')">&divide;</button>
+        </div>
+    </form>
+    <script>
+        let Dis = document.getElementById('Show');
+        function press(num){
+            if(Dis.textContent === "0"){
+                Dis.textContent = num;
+            }else{
+                Dis.textContent += num;
+            }
+        }
+        function Calculator(){
+            Dis.textContent = eval(Dis.textContent);
+        }
+        function cleardisplay(){
+            Dis.textContent = "0";
+        }
+    </script>
+</body>
+</html>
