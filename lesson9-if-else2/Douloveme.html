@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Do You Love Me ???</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            font-size: 100px;
+            font-weight: bold;
+        }
+        input, button {
+            font-size: 40px;
+            border: black solid 2px;
+            border-radius: 999px;
+            padding: 10px;
+            cursor : pointer;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1> Do You Love Me</h1>
+    <input type="button" id="Yes" value="Yes" onclick="Yes()">
+    <input type="button" id="No" value="No" onclick="No()">
+    <script>
+        function Yes(){
+            document.write('<img src="https://cdn.pixabay.com/animation/2022/07/30/22/01/22-01-29-66_512.gif" alt=""/>');
+        }
+        function No(){
+            let A = document.getElementById('No');
+            A.style.position = 'relative';
+            A.style.left = Math.random() *500 +'px';
+            A.style.top = Math.random() *300 +'px';
+        }
+    </script>
+</body>
+</html>
