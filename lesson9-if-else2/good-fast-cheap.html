@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Good-Fast-Cheap</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+
+        button {
+            width: 80px;
+            height: 40px;
+            font-size: 16px;
+            border-radius: 500px;
+        }
+    </style>
+</head>
+<body>
+<h1> Good - Fast - Cheap </h1>
+<label>Good:</label>
+<button id="Play" onclick="toggle(this)">OFF</button>
+<br><br>
+<label>Fast:</label>
+<button id="Game" onclick="toggle(this)">OFF</button>
+<br><br>
+<label>Cheap:</label>
+<button id="Cheap" onclick="toggle(this)">OFF</button>
+<br><br>
+
+<script>
+    const buttons = [
+        document.getElementById("Play"),
+        document.getElementById("Game"),
+        document.getElementById("Cheap")
+    ];
+
+    function toggle(button) {
+        if (button.textContent === "OFF") {
+            button.textContent = "ON";
+            button.style.backgroundColor = "red";
+        } else {
+            button.textContent = "OFF";
+            button.style.backgroundColor = "white";
+        }
+        const onButtons = buttons.filter(b => b.textContent === "ON");
+        if (onButtons.length > 2) {
+            const others = onButtons.filter(b => b !== button);
+            const rand = others[Math.floor(Math.random() * others.length)];
+            rand.textContent = "OFF";
+            rand.style.backgroundColor = "white";
+        }
+    }
+</script>
+</body>
+</html>
