@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Practice 14</title>
+</head>
+<body>
+    <script>
+        let a = parseFloat(prompt("Nhập a : "));
+        let b = parseFloat(prompt("Nhập a : "));
+        let c = parseFloat(prompt( "Nhập c :" ));
+        let d = Math.sqrt(b*b - 4*a*c);
+        if (a === 0) {
+            if (b === 0) {
+                c === 0 ? alert(" Phương trình vô số nghiệm .") : alert(" Phương trình vô nghiệm.")
+            } else {
+                alert("Phương trình có nghiệm: x = " + (-c / b));
+            }
+        }else {
+        if (d < 0) {
+            alert("Phương trình vô nghiệm");
+        } else if (d === 0) {
+            let x = -b / (2*a);
+            alert("Phương trình có nghiệm kép: x₁ = x₂ = " + x) ;
+        } else {
+            let x1 = (-b + d) / (2*a);
+            let x2 = (-b - d) / (2*a);
+            alert('Phương trình có 2 nghiệm phân biệt: x₁, x₂ :' + x1 + ',' +x2);
+        }
+        }
+    </script>
+</body>
+</html>
