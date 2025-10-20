@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Practice 7</title>
+</head>
+<body>
+    <script>
+        let a = +prompt(" Nhập điểm bài kiểm tra : ");
+        let b = +prompt(" Nhập điểm thi giữa kỳ : ");
+        let c = +prompt(" Nhập điểm thi cuối kỳ : ")
+        let d = (a + b + c)/3;
+        if (d < 5){
+            alert(" Học lực của bạn : Yếu.");
+        }else if (d > 5 && d < 7.5){
+            alert(" Học lực của bạn : TB");
+        }else if (d > 7.5 && d < 8.5){
+            alert(" Học lực của bạn : Khá");
+        }else {
+            alert(" Học lực của bạn : Giỏi");
+        }
+    </script>
+</body>
+</html>
