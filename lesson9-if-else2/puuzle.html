@@ -4,179 +4,119 @@
     <meta charset="UTF-8">
     <title>Puzzle Game</title>
     <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 50px;
-            font-weight: bold;
-            color: rebeccapurple;
-        }
-
-        #display {
-            color: rebeccapurple;
-            border: 2px solid black;
-            margin: 50px auto;
-            padding: 40px;
-            text-align: center;
-            width: 400px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        #On {
-            font-size: 40px;
-            font-weight: bold;
-        }
-
-        #Onn, #B {
-            font-size: 18px;
-            border-radius: 30px;
-            cursor: pointer;
-            background-color: yellow;
-            border: none;
-            padding: 10px 20px;
-            margin-top: 10px;
-            transition: background-color 0.3s;
-        }
-
-        #Onn:hover, #B:hover {
-            background-color: orange;
-        }
-
-        #Game {
-            display: none;
-            grid-template-rows: repeat(5, 120px);
-            justify-content: center;
-            gap: 10px;
-            padding: 10px;
-        }
-
-        #Game img {
-            width: 320px;
-            height: 120px;
-            border-radius: 8px;
-            object-fit: cover;
-            cursor: pointer;
-            transition: transform 0.2s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-
-        #Game img:hover {
-            transform: scale(1.03);
-        }
-
-        /* Hiệu ứng rung */
-        @keyframes shake {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            10%, 90% { transform: translate(-3px, -2px) rotate(-1deg); }
-            20%, 80% { transform: translate(3px, 2px) rotate(1deg); }
-            30%, 70% { transform: translate(-3px, 2px) rotate(-1deg); }
-            40%, 60% { transform: translate(3px, -2px) rotate(1deg); }
-            50% { transform: translate(-3px, 0px) rotate(0deg); }
-        }
-
-        .shake {
-            animation: shake 0.5s ease-in-out 2;
+        .effect {
+            box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.6), 0 6px 20px 0 rgba(239, 0, 0, 0.6);
         }
     </style>
 </head>
 <body>
-<h1>Puzzle Game</h1>
-
-<div id="display">
-    <!-- Màn hình Login -->
-    <div id="Login">
-        <label for="clear">UserName:</label>
-        <input id="clear" type="text" placeholder="Enter name"><br><br>
-        <label for="pass">Password:</label>
-        <input id="pass" type="password"><br><br>
-        <input id="B" type="button" value="Login" onclick="cleardisplay()">
-    </div>
-
-    <!-- Màn hình Welcome -->
-    <div id="Play" style="display:none;">
-        <p id="On">Welcome to Puzzle Game</p>
-        <input id="Onn" type="button" value="Start Game ▶" onclick="startGame()">
-    </div>
-
-    <!-- Màn hình Game -->
-    <div id="Game"></div>
-</div>
-
+<img src="img/funny-cat1_part1x1.jpg" width="600" height="160" alt="" id="img1"><br>
+<img src="img/monkey_part2x1.jpg" width="600" height="160" alt="" id="img2"><br>
+<img src="img/funny-cat1_part3x1.jpg" width="600" height="160" alt="" id="img3"><br>
+<img src="img/panda_swap_part4x1.jpg" width="600" height="160" alt="" id="img4"><br>
+<img src="img/funny-cat1_part5x1.jpg" width="600" height="160" alt="" id="img5"><br>
 <script>
-    const login = document.getElementById('Login');
-    const play = document.getElementById('Play');
-    const game = document.getElementById('Game');
+    let img1 = document.getElementById('img1');
+    let img2 = document.getElementById('img2');
+    let img3 = document.getElementById('img3');
+    let img4 = document.getElementById('img4');
+    let img5 = document.getElementById('img5');
 
-    const images = [
-        "imagee/a.jpg","imagee/a1.jpg","imagee/a2.jpg","imagee/a3.jpg",
-        "imagee/a4.jpg","imagee/a5.jpg","imagee/a6.jpg","imagee/a7.jpg",
-        "imagee/a8.jpg","imagee/a9.jpg","imagee/a10.jpg","imagee/a11.jpg",
-        "imagee/a12.jpg","imagee/a13.jpg","imagee/a14.jpg"
-    ];
-    const correctOrder = images.slice(0, 5); // đúng là 5 ảnh đầu
-    let currentOrder = randomImages(); // chọn ngẫu nhiên 5 ảnh
-
-    // Kiểm tra đăng nhập
-    function cleardisplay() {
-        const user = document.getElementById('clear').value.trim();
-        const pass = document.getElementById('pass').value.trim();
-
-        if (!user || !pass) return alert("❌ Nhập tên và mật khẩu trước khi chơi!");
-
-        login.style.display = 'none';
-        play.style.display = 'block';
-    }
-
-    // Bắt đầu game
-    function startGame() {
-        play.style.display = 'none';
-        game.style.display = 'grid';
-        showImages();
-    }
-
-    // Hiển thị 5 ảnh
-    function showImages() {
-        game.innerHTML = '';
-        currentOrder.forEach((src, index) => {
-            const img = document.createElement('img');
-            img.src = src;
-            img.onclick = () => changeImage(index);
-            game.appendChild(img);
-        });
-    }
-
-    // Click ảnh → đổi sang ảnh ngẫu nhiên khác
-    function changeImage(index) {
-        let newImg;
-        do {
-            newImg = images[Math.floor(Math.random() * images.length)];
-        } while (newImg === currentOrder[index]);
-
-        currentOrder[index] = newImg;
-        showImages();
-        checkWin();
-    }
-
-    // Kiểm tra thắng
     function checkWin() {
-        const win = currentOrder.slice(0, 5).every((val, i) => val === correctOrder[i]);
-        if (win) {
-            game.classList.add('shake');
-            setTimeout(() => {
-                game.classList.remove('shake');
-                alert("🎉 Bạn đã ghép đúng toàn bộ bức tranh!");
-            }, 800);
+        if (img1.src.includes('funny-cat1_part1x1')
+            && img2.src.includes('funny-cat1_part2x1')
+            && img3.src.includes('funny-cat1_part3x1')
+            && img4.src.includes('funny-cat1_part4x1')
+            && img5.src.includes('funny-cat1_part5x1')) {
+            img1.classList.add('effect');
+            img2.classList.add('effect');
+            img3.classList.add('effect');
+            img4.classList.add('effect');
+            img5.classList.add('effect');
+        } else if (img1.src.includes('monkey_part1x1')
+            && img2.src.includes('monkey_part2x1')
+            && img3.src.includes('monkey_part3x1')
+            && img4.src.includes('monkey_part4x1')
+            && img5.src.includes('monkey_part5x1')) {
+            img1.classList.add('effect');
+            img2.classList.add('effect');
+            img3.classList.add('effect');
+            img4.classList.add('effect');
+            img5.classList.add('effect');
+        } else if (img1.src.includes('panda_swap_part1x1')
+            && img2.src.includes('panda_swap_part2x1')
+            && img3.src.includes('panda_swap_part3x1')
+            && img4.src.includes('panda_swap_part4x1')
+            && img5.src.includes('panda_swap_part5x1')) {
+            img1.classList.add('effect');
+            img2.classList.add('effect');
+            img3.classList.add('effect');
+            img4.classList.add('effect');
+            img5.classList.add('effect');
+        } else {
+            img1.classList.remove('effect');
+            img2.classList.remove('effect');
+            img3.classList.remove('effect');
+            img4.classList.remove('effect');
+            img5.classList.remove('effect');
         }
     }
 
-    // Lấy 5 ảnh random không trùng
-    function randomImages() {
-        return [...images].sort(() => Math.random() - 0.5).slice(0, 5);
-    }
+    document.getElementById('img1').addEventListener('click', function () {
+        console.log(this.src);
+        if (this.src.includes('funny-cat1_part1x1.jpg')) {
+            this.src = 'img/monkey_part1x1.jpg';
+        } else if (this.src.includes('monkey_part1x1.jpg')) {
+            this.src = 'img/panda_swap_part1x1.jpg';
+        } else {
+            this.src = 'img/funny-cat1_part1x1.jpg';
+        }
+        checkWin();
+    })
+    document.getElementById('img2').addEventListener('click', function () {
+        console.log(this.src);
+        if (this.src.includes('monkey_part2x1.jpg')) {
+            this.src = 'img/funny-cat1_part2x1.jpg';
+        } else if (this.src.includes('funny-cat1_part2x1')) {
+            this.src = 'img/panda_swap_part2x1.jpg';
+        } else {
+            this.src = 'img/monkey_part2x1.jpg';
+        }
+        checkWin();
+    })
+    document.getElementById('img3').addEventListener('click', function () {
+        console.log(this);
+        if (this.src.includes('monkey_part3x1.jpg')) {
+            this.src = 'img/panda_swap_part3x1.jpg';
+        } else if (this.src.includes('panda_swap_part3x1')) {
+            this.src = 'img/funny-cat1_part3x1.jpg';
+        } else {
+            this.src = 'img/monkey_part3x1.jpg';
+        }
+        checkWin();
+    })
+    document.getElementById('img4').addEventListener('click', function () {
+        console.log(this);
+        if (this.src.includes('monkey_part4x1.jpg')) {
+            this.src = 'img/panda_swap_part4x1.jpg';
+        } else if (this.src.includes('panda_swap_part4x1')) {
+            this.src = 'img/funny-cat1_part4x1.jpg';
+        } else {
+            this.src = 'img/monkey_part4x1.jpg';
+        }
+        checkWin();
+    })
+    document.getElementById('img5').addEventListener('click', function () {
+        console.log(this);
+        if (this.src.includes('monkey_part5x1.jpg')) {
+            this.src = 'img/panda_swap_part5x1.jpg';
+        } else if (this.src.includes('panda_swap_part5x1')) {
+            this.src = 'img/funny-cat1_part5x1.jpg';
+        } else {
+            this.src = 'img/monkey_part5x1.jpg';
+        }
+        checkWin();
+    })
 </script>
 </body>
 </html>
