@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Bai 13</title>
+</head>
+<body>
+    <script>
+        let a = +prompt("Nhap so tien muon vay : ");
+        let b = +prompt("Nhap so thang cho vay : ");
+        let c = parseFloat(prompt("nhap lai xuat hang thang (%) : "));
+        let lai = 0;
+        for (let i = 1 ; i <= b; i++) {
+            lai += (a*c*0.01);
+        }
+        alert(`Tong tien can phai tra = goc + lai : ${a} + ${lai} = ${a + lai}`) ;
+    </script>
+</body>
+</html>

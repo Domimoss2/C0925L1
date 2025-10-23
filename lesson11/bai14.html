@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Bai 14</title>
+</head>
+<body>
+<pre id="heart"></pre>
+<script>
+    let heart = "";
+    for (let y = 1.5; y > -1.5; y -= 0.1) {
+        for (let x = -1.5; x < 1.5; x += 0.05) {
+            let a = x * x + y * y - 1;
+            if (a * a * a - x * x * y * y * y <= 0) {
+                heart += "*";
+            } else {
+                heart += " ";
+            }
+        }
+        heart += "\n";
+    }
+    document.getElementById("heart").innerText = heart;
+</script>
+</body>
+</html>
