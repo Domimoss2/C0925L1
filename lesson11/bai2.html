@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Bai 2</title>
+</head>
+<body>
+<script>
+    let a = +prompt(" Enter Number : ");
+    let b = 0;
+    let c = 2;
+    while (b < a) {
+        let i = 2;
+        let laSoNguyenTo = true;
+        while (i < c) { 
+            if (c % i === 0) {
+                laSoNguyenTo = false;
+                break;
+            }
+            i++;
+        }
+        if (laSoNguyenTo) {
+            document.write(`${c}<br>`);
+            b++;
+        }
+        c++;
+    }
+</script>
+</body>
+</html>

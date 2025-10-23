@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Game doan so</title>
+</head>
+<body>
+<label> Start </label>
+<button onclick="start()"> Start</button>
+<script>
+    function start() {
+        let A = +prompt("Enter a guess number from : ");
+        let B = +prompt("Enter a guess number to : ");
+        let C = Math.floor(Math.random() * (B - A + 1) + A);
+        let D ;
+        let win = false;
+        for (let i = 0; i < 3; i++) {
+            D = +prompt("Enter a number: ");
+            if (D === C) {
+                alert("You won!");
+                win = true;
+                break;
+            } else if(D > C) {
+                alert("Your guess number is bigger");
+            } else {
+                alert("Your guess number is smaller");
+            }
+        }
+        if (!win) { alert(`You Lose! The correct number is : ${C}`); }
+    }
+
+</script>
+</body>
+</html>

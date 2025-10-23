@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        let a = +prompt('Enter temperature : ');
+        while (a > 100 || a < 20) {
+            if( a > 100 ) {
+                a = prompt('Enter temperature < 100 : ');
+                break;
+            }else if ( a < 20) {
+                a = prompt('Enter temperature > 20 : ');
+                break;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Bai 1</title>
+    <style>
+        body {
+            font-family: Arial;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            box-shadow: 0 0 8px #aaa;
+        }
+
+        th {
+            background: #0a74da;
+            color: #fff;
+            padding: 5px;
+        }
+
+        td {
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<script>
+    for (let i = 2; i <= 9; i++) {
+        let html = `<table><tr><th colspan="2">Bảng ${i}</th></tr>`;
+        for (let j = 1; j <= 10; j++) {
+            html += `<tr><td>${i} x ${j}</td><td>${i * j}</td></tr>`;
+        }
+        html += `</table>`;
+        document.body.innerHTML += html;
+    }
+</script>
+</body>
+</html>
