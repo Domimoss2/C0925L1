@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 9</title>
+</head>
+<body>
+    <p id="mo"></p>
+    <script>
+        let a = +prompt("Nhap so luong so Fibonacii ban muon : ");
+        let b = 0; let c = 1;
+        for (let i = 0; i < a ;i++){
+            document.getElementById("mo").innerHTML += `${b} <br>`;
+            let next = b + c;
+            b = c ;
+            c = next;
+        }
+    </script>
+</body>
+</html>
