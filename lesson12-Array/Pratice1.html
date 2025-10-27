@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Practice 1</title>
+</head>
+<body>
+    <label for="show"> Sample Screen :</label>
+    <input type="text" id="show">
+    <button onclick="myFunction()"> Add </button>
+    <button onclick="Show2()"> Display </button>
+    <p id="demo"></p>
+<script>
+    let element = [];
+    function myFunction() {
+         let a = document.getElementById("show").value;
+        element.push(a);
+    }
+    function Show2() {
+        let html = '';
+        for (let i = 0; i < element.length; i++) {
+            html += `Element ${i} : ${element[i]} <br>`;
+        }
+        document.getElementById("demo").innerHTML = html;
+    }
+</script>
+</body>
+</html>
