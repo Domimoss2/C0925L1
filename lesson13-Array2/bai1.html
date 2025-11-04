@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    let b = 0;
+    let c = [];
+    for (let i = 0; i < 10; i++) {
+        let a = +prompt("Nhập số nguyên : ");
+        if( a >= 10){
+            c.push(a);
+            b++;
+        }
+    }
+    document.write(`Có ${b} số lớn hơn hoặc bằng 10 :` + c );
+</script>
+</body>
+</html>
