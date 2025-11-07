@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
+<script>
+    let a = [];
+    for (let i = 0; i < 10; i++) {
+        let c = +prompt(`Enter Number ${i + 1}: `);
+        a.push(c);
+    }
+    alert(a.sort((a, b) => b - a));
+</script>
 </body>
 </html>

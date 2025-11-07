@@ -1,9 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title>🎯 Game Cờ Caro Đơn Giản</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin-top: 60px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        td {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #444;
+            font-size: 32px;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            background-color: white;
+        }
+
+        td:hover {
+            background-color: #eee;
+        }
+
+        #status {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
+
+<h2>🎮 Trò chơi Cờ Caro 3x3</h2>
+<table id="board"></table>
+<div id="status">Lượt chơi: <b>X</b></div>
+<button onclick="resetGame()">Chơi lại</button>
+
+<script>
+    const size = 3; // kích thước bàn cờ
+    let board = [];
+    let currentPlayer = "X";
+    let gameOver = false;
+
+    // Khởi tạo bàn cờ
+    function initBoard() {
+        board = [];
+        const table = document.getElementById("board");
+        table.innerHTML = "";
+        for (let i = 0; i < size; i++) {
+            board[i] = [];
+            const row = document.createElement("tr");
+            for (let j = 0; j < size; j++) {
+                board[i][j] = ".";
+                const cell = document.createElement("td");
+                cell.textContent = ".";
+                cell.onclick = () => makeMove(i, j, cell);
+                row.appendChild(cell);
+            }
+            table.appendChild(row);
+        }
+        document.getElementById("status").innerHTML = `Lượt chơi: <b>${currentPlayer}</b>`;
+    }
+
+    // Xử lý khi người chơi chọn ô
+    function makeMove(i, j, cell) {
+        if (gameOver || board[i][j] !== ".") return;
+        board[i][j] = currentPlayer;
+        cell.textContent = currentPlayer;
+
+        if (checkWin(currentPlayer)) {
+            document.getElementById("status").innerHTML = `🎉 Người thắng: <b>${currentPlayer}</b>`;
+            gameOver = true;
+            return;
+        }
+
+        // Đổi lượt
+        currentPlayer = currentPlayer === "X" ? "O" : "X";
+        document.getElementById("status").innerHTML = `Lượt chơi: <b>${currentPlayer}</b>`;
+    }
+
+    // Kiểm tra thắng
+    function checkWin(player) {
+        // Hàng ngang và dọc
+        for (let i = 0; i < size; i++) {
+            if (board[i][0] === player && board[i][1] === player && board[i][2] === player) return true;
+            if (board[0][i] === player && board[1][i] === player && board[2][i] === player) return true;
+        }
+
+        // Đường chéo
+        if (board[0][0] === player && board[1][1] === player && board[2][2] === player) return true;
+        if (board[0][2] === player && board[1][1] === player && board[2][0] === player) return true;
+
+        return false;
+    }
+
+    // Reset game
+    function resetGame() {
+        currentPlayer = "X";
+        gameOver = false;
+        initBoard();
+    }
+
+    // Chạy game khi load
+    initBoard();
+</script>
+
 </body>
 </html>

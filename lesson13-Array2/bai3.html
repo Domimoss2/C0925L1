@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
+<script>
+    let a = prompt("Nhập số lượng phần tử trong mảng : ");
+    let max = 0;
+    let sum = 0;
+    let TB;
+    for (let i = 0; i < a; i++) {
+        let b = +prompt(`Nhập phần từ thứ ${i + 1} : `);
+        if(b > max ){
+            max = b;
+        }
+        sum += b;
+        TB = sum/a;
+    }
+    document.write(`Số lớn nhất trong mảng ${max}<br>Số trung bình của mảng ${TB}`);
+</script>
 </body>
 </html>

@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
+<script>
+    let max = 0;
+    let p = 0;
+    for (let i = 0 ; i< 10; ++i) {
+        let a = +prompt("Nhập số nguyên : ");
+        if( a > max ) {
+            max = a;
+            p = i;
+        }
+    }
+    document.write(`Giá trị lớn nhất trong mảng là ${max}, Vị trí trong mảng là ${p}`)
+</script>
 </body>
 </html>

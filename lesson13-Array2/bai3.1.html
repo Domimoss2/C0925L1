@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
+<script>
+    let a = [];
+    let b = +prompt('Enter a valid number of Array : ');
+    let dem = 0;
+    for (let i = 0; i < b; i++) {
+        let c = +prompt(`Enter a  number ${i+1} : `);
+        a.push(c);
+        if (Number.isInteger(c)){
+            dem++;
+        }
+    }
+    alert(`The characters in the array are : ${dem}`);
+</script>
 </body>
 </html>

@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title>Practice2</title>
 </head>
 <body>
+    <script>
+        let num = prompt("Nhập chuỗi số: ");
+        let result = [num[0]];
+        for (let i = 1; i < num.length; i++) {
+            // nếu cả số hiện tại và số trước đó đều chẵn → chèn dấu '-'
+            if (num[i - 1] % 2 === 0 && num[i] % 2 === 0) {
+                result.push("-", num[i]);
+            } else {
+                result.push(num[i]);
+            }
+        }
+        alert("Kết quả: " + result.join(""));
+    </script>
 </body>
 </html>

@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
+<script>
+    let a = [];
+    let b = +prompt("Enter Number of Array: ");
+    let d = 0;
+    for(let i = 0; i < b; i++) {
+        let c = +prompt(`Enter Number ${i + 1}: `);
+        a.push(c);
+        if (c < 0){
+            d++;
+        }
+    }
+    alert(`Array is : ${a}, have ${d} Vowel number`);
+</script>
 </body>
 </html>

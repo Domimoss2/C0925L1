@@ -1,9 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title>Từ điển Anh - Việt đơn giản</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 80px;
+            background-color: #f6f6f6;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        input {
+            padding: 10px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #222;
+        }
+    </style>
 </head>
 <body>
+<h2>🔍 TỪ ĐIỂN ANH - VIỆT</h2>
+<input type="text" id="wordInput" placeholder="Nhập từ tiếng Anh...">
+<button onclick="translateWord()">Tra cứu</button>
+
+<div id="result"></div>
+
+<script>
+    // Mảng lưu trữ dữ liệu
+    const english = ["apple", "banana", "cat", "dog", "orange", "school", "computer"];
+    const vietnamese = ["quả táo", "quả chuối", "con mèo", "con chó", "quả cam", "trường học", "máy tính"];
+
+    function translateWord() {
+        const input = document.getElementById("wordInput").value.toLowerCase().trim();
+        const result = document.getElementById("result");
+
+        if (input === "") {
+            result.innerHTML = "⚠️ Vui lòng nhập từ cần tra!";
+            result.style.color = "red";
+            return;
+        }
+
+        const index = english.indexOf(input);
+
+        if (index !== -1) {
+            result.innerHTML = `✅ Nghĩa tiếng Việt của <b>${input}</b> là: <b>${vietnamese[index]}</b>`;
+            result.style.color = "green";
+        } else {
+            result.innerHTML = "❌ Không tìm thấy từ trong từ điển.";
+            result.style.color = "red";
+        }
+    }
+</script>
 </body>
 </html>

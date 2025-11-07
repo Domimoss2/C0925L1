@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title>Practice3</title>
 </head>
 <body>
+    <script>
+        let str = prompt("Nhập chuỗi: ");
+        let result = "";
+
+        for (let i = 0; i < str.length; i++) {
+            let char = str[i];
+            if (char === char.toUpperCase()) {
+                result += char.toLowerCase(); // nếu là chữ hoa → đổi thành thường
+            } else {
+                result += char.toUpperCase(); // nếu là chữ thường → đổi thành hoa
+            }
+        }
+        alert("Kết quả: " + result);
+    </script>
 </body>
 </html>

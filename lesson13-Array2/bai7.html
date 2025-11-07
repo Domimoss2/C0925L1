@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
+<script>
+    let a = [];
+    for (let i = 0; i < 10; i++) {
+        let c = +prompt(`Enter Number ${i + 1}: `);
+        a.push(c);
+    }
+    let b = +prompt("Enter Number V: ");
+    for (let i = 0; i < a.length; i++) {
+        if (a[i] === b) {
+            a.splice(i, 1);
+            break;
+        }
+    }
+    alert(` Array before delete : ${a}`)
+</script>
 </body>
 </html>

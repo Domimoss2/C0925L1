@@ -1,9 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
+<script>
+    let a = [];
+    let e = false;
+    for (let i = 0; i < 10; i++) {
+        let c = +prompt(`Enter Number ${i + 1}: `);
+        a.push(c);
+    }
+    let b = +prompt("Enter Number V: ");
+    for (let i = 0; i < a.length; i++) {
+        if (a[i] === b) {
+            e = true;
+            break;
+        }
+    }
+        if (e) {
+            alert(' V is in the Array')
+        } else {
+            alert('V is not in the Array');
+        }
+</script>
 </body>
 </html>
