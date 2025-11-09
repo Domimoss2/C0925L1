@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
+<script>
+    function sum(a ,b){
+        if (a > b){
+            alert(" A Lớn hơn B ");return null;
+        }else {
+            return a + b;
+        }
+    }
+    let c = +prompt('Nhập A: ');
+    let d = +prompt('Nhập B: ');
+    let result = sum(c,d);
+    if (result !== null){
+        alert(result)
+    }
+</script>
 </body>
 </html>

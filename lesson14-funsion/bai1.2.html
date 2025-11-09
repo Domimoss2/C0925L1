@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
+<p id="ka"></p>
+<script>
+    function tangMot(number) {
+        return number + 1;
+    }
+    function hienThiKetQua() {
+        let num = +prompt('nhap so : ');
+        let result = tangMot(num);
+        document.write("Giá trị sau khi tăng là: " + result);
+    }
+    hienThiKetQua();
+</script>
 </body>
 </html>

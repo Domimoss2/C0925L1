@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
+<script>
+    function TimMax() {
+        let a = +prompt('Nhập số lượng phần tử của mảng:');
+        let max = 0;
+        for(let i = 0; i < a; i++) {
+            let b = +prompt(`Nhâp phần tử thứ ${i+1}`);
+            if (b > max) {
+                max = b;
+            }
+        }
+        alert(`Số Lon nhất trong mảng là ${max}`);
+    }
+    TimMax();
+</script>
 </body>
 </html>

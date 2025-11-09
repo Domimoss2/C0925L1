@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
+<script>
+    let a = +prompt("Nhập số muốn tính giai thừa : ");
+    function Factorial(x){
+        if(x === 0 || x === 1){
+            return 1;
+        }return x*Factorial(x-1);
+    }
+    let result = Factorial(a);
+    alert(result);
+</script>
 </body>
 </html>

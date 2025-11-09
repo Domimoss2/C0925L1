@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
+<p id="ka"></p>
+<script>
+    let a = prompt('Feet : ');
+    let b = prompt('Meter : ');
+    function foottometer(){
+        return a * 0.305;
+    }
+    function metertofeet(){
+        return b * 3.279;
+    }
+    document.getElementById('ka').innerHTML = `${a} Feet = ${foottometer()} Meter <br>
+        ${b} Meter = ${metertofeet()} feet <br>`;
+</script>
 </body>
 </html>

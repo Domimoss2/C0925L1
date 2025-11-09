@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
+<script>
+    let a = +prompt('Nhập A:');
+    let b = +prompt('Nhập B:');
+    function swap() {
+        let temp = a;
+        a = b;
+        b = temp;
+        return [b,a];
+    }
+    let result = swap(a,b);
+    alert(`Sau khi hoán đổi:\nA = ${result[1]}\nB = ${result[0]}`);
+</script>
 </body>
 </html>

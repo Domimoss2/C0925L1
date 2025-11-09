@@ -1,9 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
+<script>
+    const Sao = ['Polaris', 'Aldebaran', 'deneb','Vega', 'Altair', 'Dubhe', 'Regulus']
+    const Chomsao = ['UrsaMinor', 'Taurus', 'Cygnus', 'Lyra', 'Aquila', 'UrsaMajor', 'leo' ];
+    function Timsao(x){
+        let Found = false;
+        for (let i = 0; i < Sao.length; i++){
+            if(x === Sao[i]){
+                alert(` Chòm sao tương ứng là : ${Chomsao[i]}`);
+                Found = true;
+                break;
+            }
+        }
+        if(!Found){
+            alert(' không tim thấy chòm sao.')
+        }
+    }
+    let a = prompt(' Nhập ngôi sao: ');
+    Timsao(a);
+</script>
 </body>
 </html>

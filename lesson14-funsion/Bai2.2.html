@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
+<script>
+    let a = +prompt('Nhập bán kính hình tròn : ');
+    function Chuvi(x){
+        return 2 * x * Math.PI;
+    }
+    function Dientich(x){
+        return x * x * Math.PI;
+    }
+    let C = Chuvi(a);
+    let S = Dientich(a);
+    alert(`Chu vi hình tròn là: ${C}. Diện tích hình tròn là :${S}`);
+</script>
 </body>
 </html>

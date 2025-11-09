@@ -1,9 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
+<script>
+    function daoNguocMang(arr) {
+        let left = 0;
+        let right = arr.length - 1;
+        while (left < right) {
+            let temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
+        }
+        return arr;
+    }
+    // Nhập mảng từ người dùng
+    let n = +prompt('Nhập số lượng phần tử:');
+    let mang = [];
+    for (let i = 0; i < n; i++) {
+        let x = +prompt(`Nhập phần tử thứ ${i + 1}:`);
+        mang.push(x);
+    }
+    console.log("Mảng gốc:", mang);
+    daoNguocMang(mang);
+    alert(`Mảng sau khi đảo ngược: [${mang.join(', ')}]`);
+    console.log("Mảng đảo:", mang);
+</script>
 </body>
 </html>
