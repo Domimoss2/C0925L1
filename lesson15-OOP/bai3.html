@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    class Mobile{
+        constructor(name) {
+            this.name = name;
+            this.pin = 100;
+            this.ison = false;
+            this.draft = '';
+            this.inbox = [];
+            this.sent = [];
+        }
+        tunon(){
+            if(!this.ison){
+                this.ison = true;
+                console.log(`${this.name} is on`);
+            }
+        }
+        tunoff(){
+            if(this.ison){
+                this.ison = false;
+                console.log(`${this.name} is off`);
+            }
+        }
+        charge(){
+            if(this.pin < 100){
+                this.pin = 100;
+                console.log(`${this.name} charged`);
+            }
+        }
+        usebatery(){
+            this.pin--;
+            if(this.pin <= 0){
+                this.pin = 0;
+                this.ison = false;
+                console.log(`${this.name} is off`);
+            }
+        }
+        composeMessage(message){
+            this.draft = message;
+            console.log(`${this.name} composeMessage(${message})`);
+            this.usebatery();
+        }
+        receiveMessage(message, sender){
+            this.inbox.push(`to ${sender.name} : ${message}`);
+            console.log(`${this.name} received to ${sender.name} ${message}`);
+            this.usebatery();
+        }
+        sendMessage(receive){
+            receive.receiveMessage(this.draft, this);
+            this.sent.push(this.draft);
+            console.log(`${this.name} đã gửi tin: "${this.draft}" cho ${receive.name}`);
+            this.draft = "";
+            this.usebatery();
+        }
+        viewinbox(){
+            this.usebatery();
+            console.log(`${this.name} viewinbox :`, this.inbox);
+        }
+        viewsent(){
+            this.usebatery();
+            console.log(`${this.name} viewsent :`,this.sent);
+        }
+        checkStatus(){
+            console.log(`${this.name}: ${this.ison ? "on" : "off"}`);
+        }
+    }
+    let iphone = new Mobile('Iphone');
+    let samsung = new Mobile('Samsung');
+    iphone.tunon();
+    samsung.tunon();
+    iphone.composeMessage('heloo');
+    iphone.sendMessage(samsung);
+    samsung.viewinbox();
+    iphone.viewsent();
+    iphone.checkStatus();
+    samsung.checkStatus();
+    iphone.tunoff();
+    samsung.tunoff();
+</script>
+</body>
+</html>

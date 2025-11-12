@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<canvas id="myCanvas" width="200" height="100" ></canvas>
+<p id="demo"></p>
+<script>
+    function Rectangle(x,y) {
+        this.x = x;
+        this.y = y;
+        this.Dientich = function (){
+            return this.x*this.y;
+        }
+        this.chuvi = function (){
+            return (this.x + this.y)*2;
+        }
+    }
+    let rectangle = new Rectangle(+prompt("Nhap chieu dai: "),+prompt("Nhap chieu rong: "));
+    document.getElementById("demo").innerHTML = `Chu vi hcn la : ${rectangle.chuvi()} <br> dien tich hcn la : ${rectangle.Dientich()}`
+    let canvas = document.getElementById("myCanvas")
+    let ctx = canvas.getContext("2d");
+    ctx.fillStyle = "lightblue";
+    ctx.fillRect(0,0,rectangle.x,rectangle.y);
+    ctx.strokeRect(0,0,rectangle.x,rectangle.y);
+</script>
+</body>
+</html>
