@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    // Lớp Bóng đèn
+    class Light {
+        constructor() {
+            this.isOn = false; // trạng thái ban đầu tắt
+        }
+
+        turnOn() {
+            this.isOn = true;
+            this.showStatus();
+        }
+
+        turnOff() {
+            this.isOn = false;
+            this.showStatus();
+        }
+
+        showStatus() {
+            console.log(`Bóng đèn đang ${this.isOn ? "BẬT" : "TẮT"}`);
+        }
+    }
+
+    // Lớp Công tắc
+    class Switch {
+        constructor(light) {
+            this.light = light; // kết nối với bóng đèn
+            this.isOn = false;  // trạng thái công tắc ban đầu tắt
+        }
+
+        toggle() {
+            this.isOn = !this.isOn;
+            console.log(`Công tắc đã được ${this.isOn ? "BẬT" : "TẮT"}`);
+            if (this.isOn) {
+                this.light.turnOn();
+            } else {
+                this.light.turnOff();
+            }
+        }
+    }
+
+    // Khởi tạo đối tượng
+    const myLight = new Light();
+    const mySwitch = new Switch(myLight);
+
+    // Thực hiện bật/tắt công tắc 10 lần
+    for (let i = 1; i <= 10; i++) {
+        console.log(`\nLần thao tác thứ ${i}:`);
+        mySwitch.toggle();
+    }
+
+</script>
+</body>
+</html>

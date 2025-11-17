@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    // Lớp Apple
+    class Apple {
+        #weight; // dùng private field để không ai thay đổi trực tiếp
+        constructor() {
+            this.#weight = 10; // mặc định 10 đơn vị
+        }
+
+        // Chỉ có thể xem khối lượng
+        get weight() {
+            return this.#weight;
+        }
+
+        // Giảm khối lượng khi ăn
+        takeABite() {
+            if (this.#weight > 0) {
+                this.#weight -= 1;
+            } else {
+                console.log("Quả táo đã hết.");
+            }
+        }
+    }
+
+    // Lớp Human
+    class Human {
+        constructor(name, gender, weight) {
+            this.name = name;
+            this.gender = gender;
+            this.weight = weight; // cân nặng ban đầu
+        }
+
+        speak(words) {
+            console.log(`${this.name} nói: "${words}"`);
+        }
+
+        eat(apple) {
+            if (apple.weight > 0) {
+                apple.takeABite();
+                this.weight += 1;
+                console.log(`${this.name} ăn một miếng táo. Cân nặng hiện tại: ${this.weight}. Quả táo còn: ${apple.weight} đơn vị.`);
+            } else {
+                console.log(`${this.name} muốn ăn nhưng quả táo đã hết.`);
+            }
+        }
+
+        checkAppleWeight(apple) {
+            console.log(`Khối lượng quả táo hiện tại: ${apple.weight}`);
+        }
+    }
+
+    // Ví dụ mô phỏng
+    const adam = new Human("Adam", "Nam", 70);
+    const eva = new Human("Eva", "Nữ", 55);
+    const apple = new Apple();
+
+    adam.speak("Mình đói quá, ăn táo thôi!");
+    eva.speak("Đúng rồi, ăn cùng nhau đi!");
+
+    let turn = 0;
+    while (apple.weight > 0) {
+        if (turn % 2 === 0) {
+            adam.eat(apple);
+        } else {
+            eva.eat(apple);
+        }
+        turn++;
+    }
+
+    console.log("Quả táo đã hết. Adam và Eva no nê.");
+
+</script>
+</body>
+</html>

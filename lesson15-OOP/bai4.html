@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Mini Game - Move the Character</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: system-ui;
+            gap: 10px;
+            padding: 20px;
+            background: #0f172a;
+            color: #e6eef8;
+        }
+
+        canvas {
+            background: linear-gradient(180deg, #071024, #0b1b33);
+            border: 3px solid #123;
+            border-radius: 8px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+        }
+
+        .hud {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 6px 10px;
+            background: #174;
+            border-radius: 6px;
+            cursor: pointer;
+            color: white;
+            user-select: none;
+        }
+
+        .info {
+            font-size: 14px;
+            color: #bcd;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Mini Game — Di chuyển nhân vật (WASD / ←↑→↓)</h2>
+<canvas id="game" width="640" height="360"></canvas>
+
+<div class="hud">
+    <div class="info">Use WASD or Arrow keys to move. Press <strong>Space</strong> to dash.</div>
+    <div class="btn" id="resetBtn">Reset</div>
+</div>
+
+<script>
+    /*
+      Mini Game
+      - Lớp Player có: x,y, size, speed, màu
+      - Phương thức: update(), draw(ctx), move(dx,dy), dash()
+      - Bản đồ đơn giản có ràng buộc biên
+      - Điều khiển bằng keyboard (WASD + Arrows), Space để dash
+    */
+
+    class Player {
+        constructor(x, y, size = 28, color = '#ffd166') {
+            this.x = x;
+            this.y = y;
+            this.size = size;
+            this.color = color;
+            this.speed = 2.2;        // pixels per frame
+            this.vx = 0;
+            this.vy = 0;
+            this.dashCooldown = 0;   // frames
+            this.isDashing = false;
+            this.dashFrames = 0;
+        }
+
+        // gọi mỗi frame: cập nhật vị trí & trạng thái
+        update(bounds) {
+            // apply velocity
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // dash logic (ngắn)
+            if (this.isDashing) {
+                this.dashFrames--;
+                if (this.dashFrames <= 0) {
+                    this.isDashing = false;
+                    this.speed /= 2; // restore speed
+                }
+            } else if (this.dashCooldown > 0) {
+                this.dashCooldown--;
+            }
+
+            // giới hạn trong bounds {w,h}
+            const half = this.size / 2;
+            this.x = Math.max(half, Math.min(bounds.w - half, this.x));
+            this.y = Math.max(half, Math.min(bounds.h - half, this.y));
+        }
+
+        draw(ctx) {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+
+            // shadow
+            ctx.beginPath();
+            ctx.ellipse(0, this.size / 1.5, this.size * 0.9, this.size / 4, 0, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(0,0,0,0.14)';
+            ctx.fill();
+
+            // body (circle)
+            ctx.beginPath();
+            ctx.arc(0, -4, this.size / 1.6, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+
+            // eye
+            ctx.beginPath();
+            ctx.arc(-6, -8, 3, 0, Math.PI * 2);
+            ctx.fillStyle = '#073b4c';
+            ctx.fill();
+
+            // small sparkle if dashing
+            if (this.isDashing) {
+                ctx.beginPath();
+                ctx.moveTo(14, -12);
+                ctx.lineTo(22, -6);
+                ctx.lineTo(18, 2);
+                ctx.lineTo(12, -4);
+                ctx.closePath();
+                ctx.fillStyle = 'rgba(255,255,255,0.7)';
+                ctx.fill();
+            }
+
+            ctx.restore();
+        }
+
+        // set velocity via direction inputs (-1,0,1)
+        move(dx, dy) {
+            const magnitude = Math.hypot(dx, dy) || 1;
+            this.vx = (dx / magnitude) * this.speed;
+            this.vy = (dy / magnitude) * this.speed;
+        }
+
+        stop() {
+            this.vx = 0;
+            this.vy = 0;
+        }
+
+        dash() {
+            if (this.dashCooldown > 0 || this.isDashing) return;
+            // quick burst: double speed for a few frames
+            this.isDashing = true;
+            this.dashFrames = 12; // frames of dash
+            this.speed *= 2;
+            this.dashCooldown = 60; // cooldown frames before next dash
+        }
+    }
+
+    /* --- Setup game --- */
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+
+    const player = new Player(W / 2, H / 2);
+    let keys = {};
+    let lastTime = 0;
+    let fpsCounter = {frames: 0, last: performance.now(), fps: 0};
+
+    // input listeners
+    window.addEventListener('keydown', (e) => {
+        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' ', 'w', 'a', 's', 'd', 'W', 'A', 'S', 'D'].includes(e.key)) {
+            e.preventDefault();
+        }
+        keys[e.key] = true;
+    });
+    window.addEventListener('keyup', (e) => {
+        keys[e.key] = false;
+    });
+
+    // reset button
+    document.getElementById('resetBtn').addEventListener('click', () => {
+        player.x = W / 2;
+        player.y = H / 2;
+        player.speed = 2.2;
+        player.isDashing = false;
+        player.dashCooldown = 0;
+    });
+
+    // simple background grid
+    function drawBackground() {
+        ctx.fillStyle = '#071024';
+        ctx.fillRect(0, 0, W, H);
+        ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+        ctx.lineWidth = 1;
+        for (let x = 0; x <= W; x += 40) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, H);
+            ctx.stroke();
+        }
+        for (let y = 0; y <= H; y += 40) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(W, y);
+            ctx.stroke();
+        }
+    }
+
+    // game loop
+    function gameLoop(ts) {
+        const dt = ts - lastTime;
+        lastTime = ts;
+
+        // fps calc
+        fpsCounter.frames++;
+        if (ts - fpsCounter.last >= 500) {
+            fpsCounter.fps = Math.round((fpsCounter.frames * 1000) / (ts - fpsCounter.last));
+            fpsCounter.frames = 0;
+            fpsCounter.last = ts;
+        }
+
+        // process input -> direction
+        let dx = 0, dy = 0;
+        if (keys['ArrowUp'] || keys['w'] || keys['W']) dy -= 1;
+        if (keys['ArrowDown'] || keys['s'] || keys['S']) dy += 1;
+        if (keys['ArrowLeft'] || keys['a'] || keys['A']) dx -= 1;
+        if (keys['ArrowRight'] || keys['d'] || keys['D']) dx += 1;
+
+        if (dx === 0 && dy === 0) {
+            player.stop();
+        } else {
+            player.move(dx, dy);
+        }
+
+        // dash
+        if ((keys[' '] || keys['Space']) && !player.isDashing) {
+            player.dash();
+        }
+
+        // update
+        player.update({w: W, h: H});
+
+        // render
+        drawBackground();
+        player.draw(ctx);
+
+        // HUD
+        ctx.fillStyle = '#cfe8ff';
+        ctx.font = '14px system-ui';
+        ctx.fillText(`Position: ${Math.round(player.x)}, ${Math.round(player.y)}`, 12, 18);
+        ctx.fillText(`Dash CD: ${Math.max(0, Math.round(player.dashCooldown / 60))}s`, 12, 36);
+        ctx.fillText(`FPS: ${fpsCounter.fps}`, W - 72, 18);
+
+        requestAnimationFrame(gameLoop);
+    }
+    // start
+    requestAnimationFrame(gameLoop);
+</script>
+</body>
+</html>

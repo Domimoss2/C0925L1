@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Cờ Caro 20x20</title>
+    <style>
+        table { border-collapse: collapse; }
+        td {
+            width: 30px; height: 30px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid #333;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>Cờ Caro 20x20</h1>
+<p id="turn">Lượt của: X</p>
+<table id="board"></table>
+
+<script>
+    const size = 20;
+    let board = [];
+    let currentPlayer = 'X';
+    const boardElement = document.getElementById('board');
+    const turnElement = document.getElementById('turn');
+
+    // Tạo bàn cờ
+    for (let i = 0; i < size; i++) {
+        const row = [];
+        const tr = document.createElement('tr');
+        for (let j = 0; j < size; j++) {
+            const td = document.createElement('td');
+            td.dataset.row = i;
+            td.dataset.col = j;
+            td.addEventListener('click', cellClick);
+            tr.appendChild(td);
+            row.push('');
+        }
+        boardElement.appendChild(tr);
+        board.push(row);
+    }
+
+    function cellClick(event) {
+        const td = event.target;
+        const row = parseInt(td.dataset.row);
+        const col = parseInt(td.dataset.col);
+
+        if (board[row][col] !== '') return; // ô đã có dấu
+
+        board[row][col] = currentPlayer;
+        td.textContent = currentPlayer;
+
+        if (checkWin(row, col)) {
+            alert(`${currentPlayer} thắng!`);
+            resetBoard();
+            return;
+        }
+
+        // Đổi lượt
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        turnElement.textContent = `Lượt của: ${currentPlayer}`;
+    }
+
+    function checkWin(row, col) {
+        const directions = [
+            [0,1], [1,0], [1,1], [1,-1] // ngang, dọc, chéo xuống phải, chéo xuống trái
+        ];
+        for (const [dx, dy] of directions) {
+            let count = 1;
+            // Kiểm tra hướng dương
+            let r = row + dx, c = col + dy;
+            while (r >= 0 && r < size && c >=0 && c < size && board[r][c] === currentPlayer) {
+                count++;
+                r += dx;
+                c += dy;
+            }
+            // Kiểm tra hướng ngược
+            r = row - dx; c = col - dy;
+            while (r >= 0 && r < size && c >=0 && c < size && board[r][c] === currentPlayer) {
+                count++;
+                r -= dx;
+                c -= dy;
+            }
+            if (count >= 5) return true;
+        }
+        return false;
+    }
+
+    function resetBoard() {
+        for (let i = 0; i < size; i++) {
+            for (let j = 0; j < size; j++) {
+                board[i][j] = '';
+                boardElement.rows[i].cells[j].textContent = '';
+            }
+        }
+        currentPlayer = 'X';
+        turnElement.textContent = `Lượt của: ${currentPlayer}`;
+    }
+</script>
+</body>
+</html>
