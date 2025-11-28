@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    let a = prompt('Enter Your Strings : ');
+    function DemKyTu(a){
+        let dem = 0;
+        for (let i = 0; i < a.length; i++) {
+            if(a[i] === a[i].toUpperCase()) {
+                dem++;
+            }
+        }
+        if(dem === 0){
+            return('The Strings is not contain upper char.');
+        }else {
+            return(dem);
+        }
+    }
+    let result = DemKyTu(a);
+    alert(result);
+</script>
+</body>
+</html>

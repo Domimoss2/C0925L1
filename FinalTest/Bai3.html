@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    let a = +prompt('Nhập số lượng phần tử của mảng');
+    let array = [];
+    for (let i = 0; i <= a; i++) {
+        let b = +prompt(`Nhập phần tử thứ ${i+1}: `);
+        array.push(b);
+    }
+    function SapXepTangDan(array) {
+        array.sort((a, b) => a - b);
+        return array;
+    }
+    let result = SapXepTangDan(array);
+    alert(result);
+</script>
+</body>
+</html>

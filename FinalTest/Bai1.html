@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    let a = +prompt('Nhập số lượng phần tử của mảng: ');
+    let array = [];
+    let chan = 0;
+    let le = 0;
+    for(let i = 0; i <= a; i++) {
+        let b = +prompt(`Nhập phần tử thứ ${i+1} : `);
+        array.push(b);
+        if(b % 2 === 0) {
+            chan +=b;
+        }else le +=b ;
+    }
+    let result = chan - le;
+    console.log(array);
+    console.log(result);
+</script>
+</body>
+</html>

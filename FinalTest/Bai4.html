@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    class Phone {
+        constructor( Ma, Ten, Hang, Gia) {
+            this._Ma = Ma;
+            this._Ten = Ten;
+            this._Hang = Hang;
+            this._Gia = Gia;
+        }
+        get Ma(){
+            return this._Ma;
+        }
+        get Ten() {
+            return this._Ten;
+        }
+        get Hang() {
+            return this._Hang;
+        }
+        get Gia() {
+            return this._Gia;
+        }
+        set Ten (NewTen) {
+            this._Ten = NewTen;
+        }
+        set Hang (NewHang) {
+            this._Hang = NewHang;
+        }
+        set Gia (NewGia) {
+            this._Gia = NewGia;
+        }
+        set Ma (newM) {
+            this._Ma = newM;
+        }
+        toString(){
+            return `[Mã : ${this._Ma}]\n Tên : ${this._Ten}\n Hãng : ${this._Hang}\n Giá : ${this._Gia}`;
+        }
+    }
+    let ListPhone = [
+        new Phone('IP17', 'Iphone 17', 'Apple', 30000000),
+        new Phone('IP17PRM', 'Iphone 17 ProMax', 'Apple', 40000000),
+        new Phone('SS21', 'Sam Sung S21', 'SamSung', 21000000),
+        new Phone('OPP', 'Oppo Renote', 'Oppo', 12000000),
+    ]
+    ListPhone.Ma;
+    ListPhone.Ten;
+    ListPhone.Hang;
+    ListPhone.Gia;
+    function Show() {
+        ListPhone.sort((a, b) => {
+            const tenA = a.Ten.toUpperCase();
+            const tenB = b.Ten.toUpperCase();
+            if (tenA < tenB) return -1;
+            if (tenA > tenB) return 1;
+            return 0;
+        });
+        ListPhone.forEach((dt, index) => {
+            console.log(`${index + 1}. ${dt.toString()}`);
+        });
+    }
+    function AddPhone(){
+        let Ma = prompt('Nhập Ma : ');
+        let Ten = prompt('Nhập Tên : ');
+        let Hang = prompt('Nhập Hãng :');
+        let Gia = +prompt('Nhập Giá : ');
+        if(Ma && Ten && Hang && !isNaN(Gia) && Gia >= 0){
+            let NewPhone = new Phone(Ma, Ten, Hang, Gia);
+            ListPhone.push(NewPhone);
+            console.log('---Thêm Mới Thành Công.---');
+            Show();
+        }else {
+            console.log('Dữ liệu nhập vào chưa đúng.')
+        }
+    }
+    AddPhone();
+</script>
+</body>
+</html>
